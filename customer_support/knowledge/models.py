@@ -18,3 +18,11 @@ class DocumentChunk(models.Model):
 
     def __str__(self):
         return f"Chunk {self.chunk_index} of {self.document.title}"
+
+class Embedding(models.Model):
+    document_chunk = models.ForeignKey(DocumentChunk, on_delete=models.CASCADE, related_name='embedding')
+    vector = models.BigIntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Embedding for {self.document_chunk}"
