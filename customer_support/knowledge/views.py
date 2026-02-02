@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from knowledge.query_service import RAGQueryService
+from knowledge.singleton import shared_query_service
 
 class QueryAPIView(APIView):
     def post(self, request):
@@ -9,7 +9,7 @@ class QueryAPIView(APIView):
         if not query.strip():
             return Response({"error": "Query cannot be empty"}, status=status.HTTP_400_BAD_REQUEST)
 
-        service = RAGQueryService(top_k=5)
-        results = service.query_with_llm(query)
+        
+        results = shared_query_service.query_with_llm(query)
 
         return Response({"results": results})
