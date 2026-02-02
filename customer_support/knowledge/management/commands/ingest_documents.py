@@ -21,7 +21,7 @@ class Command(BaseCommand):
             self.stderr.write(f"File {file_path} does not exist.")
             return
 
-        if Document.objects.filter(original_filename=os.path.basename(file_path)).exists():
+        if Document.objects.filter(file_name=os.path.basename(file_path)).exists():
             self.stderr.write("Document already ingested.")
             return
 
@@ -33,19 +33,20 @@ class Command(BaseCommand):
             return
 
         # Save Document
-        doc = Document.objects.create(title=title, source_type='txt', original_filename=os.path.basename(file_path))
+        doc = Document.objects.create(title=title, source_type='txt', file_name=os.path.basename(file_path))
 
         # Chunking
         chunks = chunk_text(text)
         chunk_objs = []
         for idx, chunk in enumerate(chunks):
-            chunk_objs.append(DocumentChunk(document=doc, chunk_index=idx, content=chunk))
+            chunk_objs.append(DocumentChunk(document=doc, chunk_index=idx, chunk_content=chunk))
         DocumentChunk.objects.bulk_create(chunk_objs)
+        chunk_objs = list(DocumentChunk.objects.filter(document=doc))
         self.stdout.write(f"Created {len(chunk_objs)} chunks")
 
         # Embedding
         embedder = LocalEmbedder()
-        embeddings = embedder.embed_texts([c.content for c in chunk_objs])
+        embeddings = embedder.embed_texts([c.chunk_content for c in chunk_objs])
         self.stdout.write("Embeddings generated")
 
         # FAISS index
@@ -55,7 +56,11 @@ class Command(BaseCommand):
         self.stdout.write("FAISS index updated and saved")
 
         # Store vector IDs
-        for chunk_obj, vector_id in zip(chunk_objs, range(index_manager.index.ntotal - len(chunk_objs), index_manager.index.ntotal)):
-            Embedding.objects.create(chunk=chunk_obj, vector_id=vector_id)
+        embedding_objs = []
+        start_id = index_manager.index.ntotal - len(chunk_objs)
+        for i, chunk_obj in enumerate(chunk_objs):
+            vector_id = start_id + i
+            embedding_objs.append(Embedding(document_chunk=chunk_obj, vector=vector_id))
+        Embedding.objects.bulk_create(embedding_objs)
 
         self.stdout.write(self.style.SUCCESS(f"Ingested {len(chunks)} chunks for document '{title}'"))

@@ -11,7 +11,7 @@ class FAISSIndexManager:
         if os.path.exists(index_path):
             self.index = faiss.read_index(index_path)
 
-    def add_vectors(self, vectors):
+    def add_vectors(self, vectors: np.ndarray):
         """vectors: np.ndarray, shape=(n, embedding_dim)"""
         if vectors.size == 0:
             return
@@ -21,6 +21,10 @@ class FAISSIndexManager:
                 f"Expected shape (n, {self.embedding_dim}), got {vectors.shape}"
             )
         self.index.add(vectors) # pyright: ignore[reportCallIssue]
-        
+
     def save(self):
+        faiss.write_index(self.index, self.index_path)
+
+    def clear(self):
+        self.index.reset()
         faiss.write_index(self.index, self.index_path)

@@ -1,0 +1,215 @@
+LUMINA HOME SMART SYSTEMS - MASTER FAQ DATASET (100 PAIRS)
+
+[SHIPPING & ORDERS]
+Q1: How long does standard shipping take?
+A1: Standard shipping within the US takes 3-5 business days.
+Q2: Do you offer overnight shipping?
+A2: Yes, overnight shipping is available for orders placed before 2 PM EST for an additional $25 fee.
+Q3: Where can I find my tracking number?
+A3: Your tracking number is emailed to you once the order ships and is also available in the 'Orders' section of your account.
+Q4: What is the return window for the Smart Hub?
+A4: The Smart Hub has a 30-day return policy from the date of delivery.
+Q5: Do you ship to P.O. Boxes?
+A5: Currently, we only ship to physical addresses via UPS and FedEx.
+Q6: Can I change my shipping address after ordering?
+A6: Addresses can be changed within 1 hour of order placement by contacting live support.
+Q7: What happens if my package is lost?
+A7: If a package is marked as delivered but not received, please wait 24 hours before filing a claim with our support team.
+Q8: Is there a fee for international returns?
+A8: Yes, customers are responsible for international return shipping costs and any associated customs duties.
+Q9: Do you offer free shipping?
+A9: We offer free standard shipping on all orders over $75.
+Q10: Can I cancel my order?
+A10: Orders can be canceled through the 'My Orders' portal as long as they haven't reached the 'Processing' stage.
+Q11: What do I do if I receive a damaged item?
+A11: Please take a photo of the damage and contact support within 48 hours for a free replacement.
+Q12: Do you ship to Australia?
+A12: Not at this time. We currently ship to the US, Canada, UK, and EU.
+Q13: How are refunds processed?
+A13: Refunds are issued to the original payment method within 7-10 business days of us receiving the return.
+Q14: Is a signature required for delivery?
+A14: Signatures are required for all orders over $500.
+Q15: Can I combine two separate orders?
+A15: Unfortunately, we cannot combine orders once they have been placed.
+
+[BILLING & SUBSCRIPTIONS]
+Q16: What payment methods do you accept?
+A16: We accept Visa, Mastercard, American Express, PayPal, and Apple Pay.
+Q17: How do I update my credit card?
+A17: Go to 'Settings' > 'Billing' in the LuminaHome app to update your payment info.
+Q18: Is there a monthly fee for the app?
+A18: The basic app features are free, but advanced cloud storage requires a subscription.
+Q19: How much is the Lumina Plus subscription?
+A19: Lumina Plus costs $9.99 per month or $99 per year.
+Q20: Do you offer a trial for the Pro plan?
+A20: Yes, every new device comes with a 30-day free trial of Lumina Pro.
+Q21: Can I get a refund on a yearly subscription?
+A21: Yearly subscriptions are non-refundable after the first 30 days of the term.
+Q22: Does the subscription cover multiple homes?
+A22: No, each subscription is tied to a single Lumina Smart Hub location.
+Q23: What happens if my payment fails?
+A23: We will attempt to retry the payment 3 times over 10 days before suspending your cloud services.
+Q24: How do I download my invoices?
+A24: Invoices can be downloaded as PDFs from the web portal under 'Account Settings'.
+Q25: Is there a discount for non-profits?
+A25: Yes, non-profit organizations are eligible for a 15% discount on hardware.
+Q26: Can I pay with Bitcoin?
+A26: We do not currently accept cryptocurrency.
+Q27: Are taxes included in the price?
+A27: Prices shown exclude sales tax, which is calculated at checkout based on your location.
+Q28: How do I switch from monthly to yearly billing?
+A28: You can change your billing frequency in the 'Subscription' tab of the app; changes apply at the next billing cycle.
+Q29: Does the Pro plan include cellular backup?
+A29: Yes, cellular backup is included in the Pro tier to keep your security system online during Wi-Fi outages.
+Q30: Will I be charged if I cancel during the trial?
+A30: No, you will not be charged if you cancel before the 30-day trial period ends.
+
+[HARDWARE & TECH]
+Q31: How do I pair the Smart Plug?
+A31: Press and hold the button on the plug for 5 seconds until the light blinks blue, then follow the app prompts.
+Q32: My Hub won't connect to Wi-Fi. What now?
+A32: Ensure your phone is on a 2.4GHz network, as the Hub does not support 5GHz for setup.
+Q33: What does a solid red light on the Hub mean?
+A33: A solid red light indicates a hardware error; try power cycling the device.
+Q34: How do I factory reset the Doorbell?
+A34: Remove the backplate and press the 'Reset' button for 20 seconds.
+Q35: Are the cameras waterproof?
+A35: Our outdoor cameras are IP65 rated, making them weather-resistant but not submersible.
+Q36: What is the maximum distance for sensors from the Hub?
+A36: Sensors should be within 100 feet of the Hub for optimal performance.
+Q37: How do I update the firmware?
+A37: Firmware updates happen automatically overnight, but you can manually check in 'Device Settings'.
+Q38: Can I use the Smart Plug outdoors?
+A38: No, the standard Smart Plug is for indoor use only. Use the 'Lumina Outdoor' model for exterior needs.
+Q39: How long do the sensor batteries last?
+A39: Most sensors use CR2032 batteries which typically last 12-18 months.
+Q40: Why is my video feed lagging?
+A40: Video lag is usually caused by low upload speeds. Ensure your internet upload speed is at least 2 Mbps per camera.
+Q41: Can I hardwire the Smart Doorbell?
+A41: Yes, it can be hardwired to existing 16-24V AC doorbell transformers.
+Q42: Does the Hub have a battery backup?
+A42: The Hub includes a small internal battery that lasts for 2 hours during power outages.
+Q43: How do I rename a device?
+A43: Tap the device in the app, select the gear icon, and tap on the current name to edit it.
+Q44: What is the operating temperature for cameras?
+A44: Our cameras operate between -4°F and 122°F (-20°C to 50°C).
+Q45: How many devices can one Hub support?
+A45: A single Lumina Smart Hub can support up to 128 individual devices.
+
+[COMPATIBILITY & FEATURES]
+Q46: Does LuminaHome work with Alexa?
+A46: Yes, simply enable the LuminaHome skill in the Alexa app.
+Q47: Can I control my lights with Google Assistant?
+A47: Yes, LuminaHome is fully compatible with Google Home and Assistant.
+Q48: Do you support IFTTT?
+A48: We currently do not have an official IFTTT integration.
+Q49: Is the system Matter-compatible?
+A49: All Gen 2 devices are Matter-compatible via a firmware update.
+Q50: Can I share access with my family?
+A50: Yes, use the 'Family Sharing' feature in the app to invite guests via email.
+Q51: Does the camera have night vision?
+A51: Yes, our cameras feature infrared night vision up to 30 feet.
+Q52: Can I set schedules for my plugs?
+A52: Absolutely. You can create 'Schedules' or 'Automations' in the app's 'Automation' tab.
+Q53: What is 'Away Mode'?
+A53: Away Mode turns on random lights to make it look like someone is home while you are traveling.
+Q54: Do the cameras support local storage?
+A54: Yes, the Hub has a microSD slot that supports cards up to 256GB for local recording.
+Q55: Can I view my cameras on a computer?
+A55: Yes, you can view live feeds at my.luminahome.com.
+Q56: Does the system work without internet?
+A56: Local automations will work, but remote access and notifications require an active internet connection.
+Q57: Is there a web-based dashboard?
+A57: Yes, the web dashboard allows for device management and viewing logs.
+Q58: Can I group lights together?
+A58: Yes, you can create 'Groups' to control multiple lights with a single tap.
+Q59: Do you have a dedicated tablet app?
+A59: We offer a 'Lumina Console' app optimized for iPad and Android tablets.
+Q60: What is the 'Panic' button for?
+A60: The Panic button in the app triggers all sirens and alerts emergency contacts if you have the Pro plan.
+
+[SECURITY & PRIVACY]
+Q61: Is my video data encrypted?
+A61: All video is encrypted using AES-256 both in transit and at rest.
+Q62: Do you sell my data to third parties?
+A62: No, LuminaHome never sells user data or video recordings to third parties.
+Q63: Does the app support Two-Factor Authentication?
+A63: Yes, we strongly recommend enabling 2FA in the 'Security' settings.
+Q64: Can employees watch my camera feeds?
+A64: No, feeds are end-to-end encrypted; only the account owner has the decryption keys.
+Q65: How do I delete my account?
+A65: Account deletion requests can be submitted via the 'Privacy' section of our website.
+Q66: Where are your servers located?
+A66: Our primary servers are located in the United States using AWS infrastructure.
+Q67: What data do you collect?
+A67: We collect device telemetry and usage logs to improve system performance.
+Q68: Can I disable the microphone on the camera?
+A68: Yes, the microphone can be toggled off in the individual camera settings.
+Q69: Is there a physical privacy shutter?
+A69: The Lumina Indoor Cam 2 includes a physical privacy shutter you can close manually.
+Q70: How do I report a security vulnerability?
+A70: Please email our security team at security@luminahome.com.
+Q71: Do you support biometric login?
+A71: Yes, the app supports FaceID and Fingerprint authentication.
+Q72: What happens to my data after I delete my account?
+A72: All data is permanently wiped from our servers within 30 days of account deletion.
+Q73: Can I see who has logged into my account?
+A73: Yes, the 'Login History' tab shows all devices and locations that accessed your account.
+Q74: Are the cameras compliant with privacy laws?
+A74: Our products are designed to be compliant with GDPR and CCPA regulations.
+Q75: Does the Hub record audio?
+A75: The Hub itself has no microphone; only specific cameras have audio recording capabilities.
+
+[COMPANY & POLICIES]
+Q76: What is the warranty period?
+A76: All LuminaHome hardware comes with a 1-year limited warranty.
+Q77: Can I extend my warranty?
+A77: The 'Lumina Care' plan extends your warranty to 3 years for a one-time fee of $29.
+Q78: Where is the company headquartered?
+A78: LuminaHome is headquartered in Palo Alto, California.
+Q79: Do you offer a trade-in program?
+A79: Yes, trade in your Gen 1 Hub for 20% off a Gen 2 Hub.
+Q80: How can I contact support?
+A80: You can reach us via live chat, email (support@luminahome.com), or phone (1-800-LUMINA).
+Q81: What are your support hours?
+A81: Phone support is available Mon-Fri, 9 AM - 6 PM PST. Live chat is 24/7.
+Q82: Do you have a referral program?
+A82: Yes, refer a friend and you both get $20 in store credit after their first purchase.
+Q83: Is LuminaHome publicly traded?
+A83: No, LuminaHome is currently a privately held company.
+Q84: Where can I find the user manuals?
+A84: Digital manuals are available for download on our 'Resources' page.
+Q85: Do you offer military discounts?
+A85: Yes, active duty and veterans get 10% off through ID.me verification.
+Q86: How do I join the beta program?
+A86: You can opt-in to 'Beta Features' in the app settings to test new software updates.
+Q87: Is the packaging recyclable?
+A87: Yes, 95% of our packaging is made from recycled materials and is fully recyclable.
+Q88: Can I use the app on an Apple Watch?
+A88: Yes, we offer a companion app for Apple Watch for quick scene control.
+Q89: What is your mission statement?
+A89: To provide seamless, secure, and accessible smart home technology for everyone.
+Q90: Do you offer bulk pricing for builders?
+A90: Yes, please contact our 'Lumina Pro' sales team for bulk quotes.
+
+[INSTALLATION & MAINTENANCE]
+Q91: Do I need a professional to install the system?
+A91: No, LuminaHome is designed for DIY installation, though we partner with TechInstalls for those who prefer help.
+Q92: How do I clean my camera lenses?
+A92: Use a dry microfiber cloth. Do not use harsh chemicals or window cleaners on the lens.
+Q93: What size drill bit do I need for the wall anchors?
+A93: Use a 3/16" (5mm) drill bit for the standard anchors included in our mounting kits.
+Q94: Can the Hub be mounted on a wall?
+A94: Yes, the Hub has integrated keyhole slots on the bottom for wall mounting.
+Q95: How often should I check my sensor batteries?
+A95: We recommend checking them every 12 months, though the app will notify you when they reach 15% power.
+Q96: Does the system require a specific router?
+A96: No, it works with any standard router, but we recommend a Mesh Wi-Fi system for homes larger than 2,000 sq ft.
+Q97: Can I paint the Smart Sensors?
+A97: We do not recommend painting them as it can interfere with the wireless signal and sensor accuracy.
+Q98: How do I reset my account password?
+A98: Click 'Forgot Password' on the login screen and follow the link sent to your verified email address.
+Q99: What happens if I move to a new house?
+A99: Simply take your devices with you and update your 'Location' and Wi-Fi settings in the LuminaHome app.
+Q100: Are the smart bulbs dimmable?
+A100: Yes, all Lumina Smart Bulbs are dimmable via the app or voice control, but should not be used with physical dimmer switches.
