@@ -12,10 +12,18 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('file_path', type=str, help='Path to the document text file')
         parser.add_argument('--title', type=str, default='Untitled', help='Document title')
+        parser.add_argument('--chunk_size', type=int, default=300, help='Chunk size in words')
+        parser.add_argument('--overlap', type=int, default=50, help='Overlap size in words')
 
     def handle(self, *args, **options):
         file_path = options['file_path']
         title = options['title']
+        chunk_size = options['chunk_size']
+        overlap = options['overlap']
+
+        if overlap >= chunk_size//2:
+            self.stderr.write("Overlap must be less than half of chunk size.")
+            return
 
         if not os.path.exists(file_path):
             self.stderr.write(f"File {file_path} does not exist.")
@@ -36,7 +44,7 @@ class Command(BaseCommand):
         doc = Document.objects.create(title=title, source_type='txt', file_name=os.path.basename(file_path))
 
         # Chunking
-        chunks = chunk_text(text)
+        chunks = chunk_text(text, chunk_size=chunk_size, overlap=overlap)
         chunk_objs = []
         for idx, chunk in enumerate(chunks):
             chunk_objs.append(DocumentChunk(document=doc, chunk_index=idx, chunk_content=chunk))
