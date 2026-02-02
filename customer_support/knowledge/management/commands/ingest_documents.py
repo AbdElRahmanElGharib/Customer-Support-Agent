@@ -21,8 +21,16 @@ class Command(BaseCommand):
             self.stderr.write(f"File {file_path} does not exist.")
             return
 
+        if Document.objects.filter(original_filename=os.path.basename(file_path)).exists():
+            self.stderr.write("Document already ingested.")
+            return
+
         with open(file_path, 'r', encoding='utf-8') as f:
             text = f.read()
+
+        if not text.strip():
+            self.stderr.write("File is empty.")
+            return
 
         # Save Document
         doc = Document.objects.create(title=title, source_type='txt', original_filename=os.path.basename(file_path))
@@ -33,15 +41,18 @@ class Command(BaseCommand):
         for idx, chunk in enumerate(chunks):
             chunk_objs.append(DocumentChunk(document=doc, chunk_index=idx, content=chunk))
         DocumentChunk.objects.bulk_create(chunk_objs)
+        self.stdout.write(f"Created {len(chunk_objs)} chunks")
 
         # Embedding
         embedder = LocalEmbedder()
         embeddings = embedder.embed_texts([c.content for c in chunk_objs])
+        self.stdout.write("Embeddings generated")
 
         # FAISS index
         index_manager = FAISSIndexManager()
         index_manager.add_vectors(embeddings)
         index_manager.save()
+        self.stdout.write("FAISS index updated and saved")
 
         # Store vector IDs
         for chunk_obj, vector_id in zip(chunk_objs, range(index_manager.index.ntotal - len(chunk_objs), index_manager.index.ntotal)):
