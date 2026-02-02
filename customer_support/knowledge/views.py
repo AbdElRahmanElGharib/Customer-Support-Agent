@@ -33,7 +33,7 @@ class DashboardView(TemplateView):
 class DocumentUploadView(FormView):
     template_name = 'upload.html'
     form_class = DocumentUploadForm
-    success_url = '/api/upload/?success=true'
+    success_url = '/upload/?success=true'
 
     def form_valid(self, form):
         uploaded_file = form.cleaned_data['file']

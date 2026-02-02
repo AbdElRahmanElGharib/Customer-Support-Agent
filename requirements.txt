@@ -1,0 +1,8 @@
+django
+djangorestframework
+mysqlclient
+numpy
+faiss
+torch
+transformers
+sentence-transformers

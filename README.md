@@ -1,96 +1,64 @@
-# Customer Support Knowledge Agent (POC)
+# Customer Support Assistant
 
-## Purpose
+## Overview
 
-- Build a backend system that integrates ML into a production-style Django stack
-- Focus on system design, async processing, caching, and clean ML integration
-- Proof of concept, not a production product
+A Django-based Retrieval-Augmented Generation (RAG) system for intelligent customer support using local LLMs and vector embeddings.
 
----
+## Features
 
-## Problem
+- **Document Ingestion**: Upload and process PDF/TXT documents
+- **Vector Search**: FAISS-based semantic search with embeddings
+- **Local LLM**: Gemma 3.1B for offline answer generation
+- **REST API**: Query endpoint for programmatic access
+- **Web Dashboard**: Interactive chat interface
 
-- Customer support knowledge (FAQs, policies, past tickets) is hard to query efficiently
-- Need a system to ingest, index, and retrieve this knowledge using similarity search
+## Tech Stack
 
----
+- Django 4.2 + Django REST Framework
+- FAISS for vector indexing
+- Sentence Transformers for embeddings
+- Hugging Face Transformers (Gemma)
+- MySQL database
 
-## Core Features
+## Quick Start
 
-- Upload support knowledge (documents / tickets)
-- Asynchronous processing and indexing
-- Vector-based similarity search
-- Cached query results
-- Traceable query execution
-- Optional local LLM-based answer generation
+1. **Install dependencies**
 
----
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-## Technology Stack
+2. **Configure database** in `settings.py`
 
-### Backend
+3. **Run migrations**
 
-- Python
-- Django
-- Django REST Framework (DRF)
-- MySQL (single source of truth)
+    ```bash
+    python manage.py migrate
+    ```
 
-### Async & Infrastructure
+4. **Upload documents**
+    - Navigate to `/upload/` and select files
 
-- Celery (background tasks)
-- Redis (broker, result backend, cache)
-- Bash (local scripts)
+5. **Query the system**
+    - Use `/dashboard/` for chat
+    - Or POST to `/query/` API endpoint
 
-### Machine Learning (Local Only)
+## Project Structure
 
-- Sentence embeddings (local model)
-- Vector store (FAISS or equivalent local store)
-- Cosine similarity / Top-K retrieval
-- Optional small local LLM (no external APIs)
+```txt
+customer_support/
+├── knowledge/          # Core RAG application
+│   ├── models.py
+│   ├── query_service.py
+│   ├── embedding_service.py
+│   ├── llm_service.py
+│   └── vector_index.py
+├── settings.py
+└── urls.py
+```
 
----
+## Configuration
 
-## High-Level Flow
-
-- Upload data → store metadata → trigger async task
-- Celery chunks text → generates embeddings → stores vectors
-- Query arrives → cache lookup → similarity search
-- Retrieved context returned (or passed to local LLM)
-- Query trace stored in DB
-
----
-
-## Project Phases
-
-1. Project framing and constraints
-2. Git flow and conventional commits
-3. Backend skeleton
-4. Data modeling
-5. Upload API
-6. Async ingestion pipeline
-7. Vector search
-8. Caching
-9. Query API (end-to-end)
-10. Observability and traceability
-11. Final documentation
-
----
-
-## Non-Goals
-
-- No frontend UI
-- No online ML services
-- No model training or fine-tuning
-- No autonomous agents or chains
-- No premature optimization
-
----
-
-## Success Criteria
-
-- Runs locally
-- Async tasks work independently
-- Cache hits observable
-- Similarity search returns relevant results
-- Queries are explainable and traceable
-- ML code is isolated and deterministic
+- Embedding model: `all-MiniLM-L6-v2` (384-dim)
+- LLM model: `google/gemma-3-1b-it`
+- Default top-k retrieval: 5 chunks
