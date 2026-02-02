@@ -10,6 +10,6 @@ class QueryAPIView(APIView):
             return Response({"error": "Query cannot be empty"}, status=status.HTTP_400_BAD_REQUEST)
 
         service = RAGQueryService(top_k=5)
-        results = service.query(query)
+        results = service.query_with_llm(query)
 
         return Response({"results": results})

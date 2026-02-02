@@ -1,7 +1,8 @@
 from knowledge.embedding_service import LocalEmbedder
 from knowledge.vector_index import FAISSIndexManager
-from knowledge.models import DocumentChunk, Embedding
-import numpy as np
+from knowledge.models import Embedding
+from knowledge.llm_service import LocalLLMService
+import time
 
 class RAGQueryService:
     def __init__(self, top_k=5, index_path='faiss.index', embedding_dim=384):
@@ -9,6 +10,7 @@ class RAGQueryService:
         self.embedder = LocalEmbedder()
         self.index_manager = FAISSIndexManager(index_path=index_path)
         self.embedding_dim = embedding_dim
+        self.llm = LocalLLMService()
 
     def query(self, question):
         """
@@ -41,3 +43,13 @@ class RAGQueryService:
                 continue
 
         return chunks
+
+    def query_with_llm(self, question, top_k=5):
+        chunks = self.query(question)
+        if not chunks:
+            return ""
+        print(f"Retrieved {len(chunks)} chunks for the question.\n Now generating answer...")
+        start_time = time.time()
+        output = self.llm.generate_answer(question, chunks)
+        print(f"Answer generated in {time.time() - start_time:.2f} seconds.")
+        return output
