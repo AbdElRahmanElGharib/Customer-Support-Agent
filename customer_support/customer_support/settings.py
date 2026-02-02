@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'query',
     'ml',
     'core',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
