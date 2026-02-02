@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Upload Knowledge Base{% endblock title %}
+
+{% block extra_head %}
+<style>
+    .upload-form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .upload-form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    /* Styling the file input to look better than browser default */
+    input[type="file"] {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px dashed var(--border-color);
+        border-radius: 6px;
+        background: #fafafa;
+        cursor: pointer;
+    }
+
+    input[type="file"]:hover {
+        border-color: var(--primary-blue);
+        background: #f0f7ff;
+    }
+
+    .btn-submit {
+        background-color: var(--primary-blue);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 4px;
+        font-weight: bold;
+        width: 100%;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .btn-submit:hover {
+        background-color: #0056b3;
+    }
+
+    .help-text {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 0.5rem;
+    }
+</style>
+{% endblock extra_head %}
+
+{% block content %}
+<div class="container-center">
+    <div class="card">
+        <h2>Admin: Ingest Document</h2>
+        
+        {% if request.GET.success %}
+            <div style="color: green; margin-bottom: 1rem;">✔ File uploaded and saved successfully!</div>
+        {% endif %}
+
+        <form id="uploadForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.file.label_tag }}
+            {{ form.file }}
+            <div id="fileError" style="color: red; font-size: 0.8rem; margin-top: 5px;"></div>
+            
+            <button type="submit" class="btn-submit" style="margin-top: 20px;">
+                Upload for Ingestion
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const fileInput = document.querySelector('input[type="file"]');
+    const uploadForm = document.getElementById('uploadForm');
+    const errorDiv = document.getElementById('fileError');
+
+    uploadForm.addEventListener('submit', function(e) {
+        const file = fileInput.files[0];
+        if (file) {
+            const allowedExtensions = /(\.pdf|\.txt)$/i;
+            const maxSize = 25 * 1024 * 1024; // 25MB
+
+            if (!allowedExtensions.exec(file.name)) {
+                e.preventDefault();
+                errorDiv.innerText = "Only .pdf and .txt files are allowed.";
+            } else if (file.size > maxSize) {
+                e.preventDefault();
+                errorDiv.innerText = "File is too large (Max 25MB).";
+            }
+        }
+    });
+</script>
+{% endblock content %}

@@ -1,0 +1,136 @@
+No of videos : 105
+
+Average length of video : 11 minutes, 41 seconds
+
+Total length of playlist : 20 hours, 28 minutes, 12 seconds
+
+At 1.25x : 16 hours, 22 minutes, 33 seconds
+
+At 1.50x : 13 hours, 38 minutes, 48 seconds
+
+At 1.75x : 11 hours, 41 minutes, 49 seconds
+
+At 2.00x : 10 hours, 14 minutes, 6 seconds
+_________________________________________________________________________________________
+
+No of videos : 20
+
+Average length of video : 1 hour, 19 minutes, 39 seconds
+
+Total length of playlist : 1 day, 2 hours, 33 minutes, 12 seconds
+
+At 1.25x : 21 hours, 14 minutes, 33 seconds
+
+At 1.50x : 17 hours, 42 minutes, 8 seconds
+
+At 1.75x : 15 hours, 10 minutes, 24 seconds
+
+At 2.00x : 13 hours, 16 minutes, 36 seconds
+_________________________________________________________________________________________
+
+No of videos : 10
+
+Average length of video : 1 hour, 14 minutes, 21 seconds
+
+Total length of playlist : 12 hours, 23 minutes, 36 seconds
+
+At 1.25x : 9 hours, 54 minutes, 52 seconds
+
+At 1.50x : 8 hours, 15 minutes, 44 seconds
+
+At 1.75x : 7 hours, 4 minutes, 54 seconds
+
+At 2.00x : 6 hours, 11 minutes, 48 seconds
+_________________________________________________________________________________________
+
+No of videos : 12
+
+Average length of video : 2 hours, 8 minutes, 41 seconds
+
+Total length of playlist : 1 day, 1 hour, 44 minutes, 19 seconds
+
+At 1.25x : 20 hours, 35 minutes, 27 seconds
+
+At 1.50x : 17 hours, 9 minutes, 32 seconds
+
+At 1.75x : 14 hours, 42 minutes, 28 seconds
+
+At 2.00x : 12 hours, 52 minutes, 9 seconds
+_________________________________________________________________________________________
+
+No of videos : 23
+
+Average length of video : 1 hour, 16 minutes, 10 seconds
+
+Total length of playlist : 1 day, 5 hours, 12 minutes, 4 seconds
+
+At 1.25x : 23 hours, 21 minutes, 39 seconds
+
+At 1.50x : 19 hours, 28 minutes, 2 seconds
+
+At 1.75x : 16 hours, 41 minutes, 10 seconds
+
+At 2.00x : 14 hours, 36 minutes, 2 seconds
+_________________________________________________________________________________________
+
+No of videos : 18
+
+Average length of video : 1 hour, 2 minutes, 55 seconds
+
+Total length of playlist : 18 hours, 52 minutes, 39 seconds
+
+At 1.25x : 15 hours, 6 minutes, 7 seconds
+
+At 1.50x : 12 hours, 35 minutes, 6 seconds
+
+At 1.75x : 10 hours, 47 minutes, 13 seconds
+
+At 2.00x : 9 hours, 26 minutes, 19 seconds
+_________________________________________________________________________________________
+
+No of videos : 16
+
+Average length of video : 1 hour, 13 minutes, 9 seconds
+
+Total length of playlist : 19 hours, 30 minutes, 24 seconds
+
+At 1.25x : 15 hours, 36 minutes, 19 seconds
+
+At 1.50x : 13 hours, 16 seconds
+
+At 1.75x : 11 hours, 8 minutes, 48 seconds
+
+At 2.00x : 9 hours, 45 minutes, 12 seconds
+_________________________________________________________________________________________
+
+No of videos : 17
+
+Average length of video : 1 hour, 15 minutes, 54 seconds
+
+Total length of playlist : 21 hours, 30 minutes, 19 seconds
+
+At 1.25x : 17 hours, 12 minutes, 15 seconds
+
+At 1.50x : 14 hours, 20 minutes, 12 seconds
+
+At 1.75x : 12 hours, 17 minutes, 19 seconds
+
+At 2.00x : 10 hours, 45 minutes, 9 seconds
+_________________________________________________________________________________________
+
+Total
+_________________________________________________________________________________________
+
+No of videos : 221
+
+Average length of video : 47 minutes, 18 seconds
+
+Total length of playlist : 7 days, 6 hours, 14 minutes, 45 seconds
+
+At 1.25x : 5 days, 19 hours, 23 minutes, 48 seconds
+
+At 1.50x : 4 days, 20 hours, 9 minutes, 50 seconds
+
+At 1.75x : 4 days, 3 hours, 34 minutes, 9 seconds
+
+At 2.00x : 3 days, 15 hours, 7 minutes, 23 seconds

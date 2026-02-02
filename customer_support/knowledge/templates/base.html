@@ -32,6 +32,23 @@
             border-bottom: 1px solid var(--border-color);
             flex-shrink: 0; /* Prevents header from squishing */
         }
+        .container-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 500px;
+        }
     </style>
 
     {% block extra_head %}{% endblock extra_head %}

@@ -4,6 +4,10 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 from knowledge.singleton import shared_query_service
+from django.views.generic.edit import FormView
+from django.core.files.storage import FileSystemStorage
+from .forms import DocumentUploadForm
+from knowledge.management.commands.ingest_documents import Command as IngestCommand
 
 class QueryAPIView(APIView):
     def post(self, request):
@@ -25,3 +29,18 @@ class DashboardView(TemplateView):
         bot_reply = shared_query_service.query_with_llm(user_message)
 
         return JsonResponse({'response': bot_reply})
+
+class DocumentUploadView(FormView):
+    template_name = 'upload.html'
+    form_class = DocumentUploadForm
+    success_url = '/api/upload/?success=true'
+
+    def form_valid(self, form):
+        uploaded_file = form.cleaned_data['file']
+        
+        fs = FileSystemStorage()
+        filename = fs.save(uploaded_file.name, uploaded_file)
+        
+        IngestCommand().handle(file_path=fs.path(filename), title=uploaded_file.name, chunk_size=100, overlap=10)
+
+        return super().form_valid(form)
