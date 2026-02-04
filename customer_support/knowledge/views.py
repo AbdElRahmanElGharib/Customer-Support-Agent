@@ -8,6 +8,8 @@ from django.views.generic.edit import FormView
 from django.core.files.storage import FileSystemStorage
 from .forms import DocumentUploadForm
 from knowledge.management.commands.ingest_documents import Command as IngestCommand
+from .tasks import process_document
+from .models import DocumentSubmission
 
 class QueryAPIView(APIView):
     def post(self, request):
@@ -41,6 +43,7 @@ class DocumentUploadView(FormView):
         fs = FileSystemStorage()
         filename = fs.save(uploaded_file.name, uploaded_file)
         
-        IngestCommand().handle(file_path=fs.path(filename), title=uploaded_file.name, chunk_size=100, overlap=10)
+        submission = DocumentSubmission.objects.create(file=filename, status=DocumentSubmission.Status.SUBMITTED)
+        process_document.delay(submission.pk)   # type: ignore
 
         return super().form_valid(form)

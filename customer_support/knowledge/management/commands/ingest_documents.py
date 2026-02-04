@@ -3,8 +3,8 @@ from knowledge.models import Document, DocumentChunk, Embedding
 from knowledge.utils import chunk_text
 from knowledge.embedding_service import LocalEmbedder
 from knowledge.vector_index import FAISSIndexManager
-import numpy as np
 import os
+from pypdf import PdfReader
 
 class Command(BaseCommand):
     help = "Ingest documents and create embeddings"
@@ -33,8 +33,18 @@ class Command(BaseCommand):
             self.stderr.write("Document already ingested.")
             return
 
-        with open(file_path, 'r', encoding='utf-8') as f:
-            text = f.read()
+        if not file_path.lower().endswith(('.pdf', '.txt')):
+            self.stderr.write("File must be a PDF or TXT.")
+            return
+
+        if file_path.lower().endswith('.pdf'):
+            reader = PdfReader(file_path)
+            text = ""
+            for page in reader.pages:
+                text += page.extract_text() + "\n"
+        else:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                text = f.read()
 
         if not text.strip():
             self.stderr.write("File is empty.")

@@ -29,7 +29,7 @@ class RAGQueryService:
             return []
 
         # Step 2: search FAISS
-        _, indices = self.index_manager.index.search(question_vec, self.top_k) # pyright: ignore[reportCallIssue]
+        _, indices = self.index_manager.index.search(question_vec, self.top_k) # type: ignore
 
         # Step 3: map FAISS indices to chunks
         chunks = []

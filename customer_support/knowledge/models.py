@@ -33,7 +33,7 @@ class Embedding(models.Model):
 from django.db import models
 
 
-class PDFSubmission(models.Model):
+class DocumentSubmission(models.Model):
     class Status(models.TextChoices):
         SUBMITTED = "SUBMITTED", "Submitted"
         IN_PROGRESS = "IN_PROGRESS", "In Progress"

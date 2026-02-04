@@ -7,3 +7,5 @@ faiss
 torch
 transformers
 sentence-transformers
+celery
+redis

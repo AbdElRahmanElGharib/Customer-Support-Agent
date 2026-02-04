@@ -20,7 +20,7 @@ class FAISSIndexManager:
             raise ValueError(
                 f"Expected shape (n, {self.embedding_dim}), got {vectors.shape}"
             )
-        self.index.add(vectors) # pyright: ignore[reportCallIssue]
+        self.index.add(vectors) # type: ignore
 
     def save(self):
         faiss.write_index(self.index, self.index_path)
