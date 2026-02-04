@@ -136,3 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
+
+LLM_SERVICE_BASE_URL = os.getenv("LLM_SERVICE_BASE_URL", "http://localhost:8080")
