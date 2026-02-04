@@ -7,9 +7,11 @@ from knowledge.singleton import shared_query_service
 from django.views.generic.edit import FormView
 from django.core.files.storage import FileSystemStorage
 from .forms import DocumentUploadForm
-from knowledge.management.commands.ingest_documents import Command as IngestCommand
 from .tasks import process_document
 from .models import DocumentSubmission
+from django.core.cache import cache
+from django.conf import settings
+
 
 class QueryAPIView(APIView):
     def post(self, request):
@@ -51,3 +53,25 @@ class DocumentUploadView(FormView):
 
 class SubmissionsView(TemplateView):
     template_name = 'submissions.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        submissions = cache.get(settings.SUBMISSIONS_CACHE_KEY)
+        if submissions is None:
+            submissions = list(
+                DocumentSubmission.objects.all()
+                .order_by("-created_at")
+                .values(
+                    "id",
+                    "file",
+                    "user_email",
+                    "created_at",
+                    "status",
+                    "last_updated",
+                )
+            )
+
+            cache.set(settings.SUBMISSIONS_CACHE_KEY, submissions, settings.SUBMISSIONS_CACHE_TTL_SECONDS)
+        
+        context['submissions'] = submissions
+        return context
