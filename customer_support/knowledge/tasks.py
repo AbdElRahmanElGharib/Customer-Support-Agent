@@ -24,8 +24,8 @@ def process_document(self, submission_id: int):
 
         if submission.user_email:
             send_mail(
-                subject="PDF processing completed",
-                message="Your PDF has been processed successfully.",
+                subject="Document processing completed",
+                message="Your document has been processed successfully.",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[submission.user_email],
                 fail_silently=False,
@@ -37,8 +37,8 @@ def process_document(self, submission_id: int):
 
         if submission.user_email:
             send_mail(
-                subject="PDF processing failed",
-                message="There was an error processing your PDF.",
+                subject="Document processing failed",
+                message="There was an error processing your document.",
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[submission.user_email],
                 fail_silently=False,

@@ -48,3 +48,6 @@ class DocumentUploadView(FormView):
         process_document.delay(submission.pk)   # type: ignore
 
         return super().form_valid(form)
+
+class SubmissionsView(TemplateView):
+    template_name = 'submissions.html'
