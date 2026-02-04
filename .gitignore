@@ -5,3 +5,4 @@ __pycache__/
 faiss.index
 media/
 .env
+*.sqlite3

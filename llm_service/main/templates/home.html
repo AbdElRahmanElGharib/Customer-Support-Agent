@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --bg-gray: #f8f9fa;
+            --border-color: #dee2e6;
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-gray);
+            overflow: hidden; /* Keeps the app contained to the screen */
+        }
+
+        .app-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .app-header {
+            background: #fff;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0; /* Prevents header from squishing */
+        }
+        .container-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+
+        .messages-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+        }
+
+        .agent {
+            align-self: flex-start;
+            background: #e9ecef;
+            color: #212529;
+        }
+
+        .user {
+            align-self: flex-end;
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .input-area {
+            padding: 20px;
+            background: #fff;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .input-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            outline: none;
+        }
+
+        button {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        @keyframes popBounce {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.05); /* The "Overshoot" */
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1); /* Settling back */
+            }
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            
+            /* Animation settings */
+            animation: popBounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+            transform-origin: bottom left; /* Agent messages pop from bottom-left */
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: var(--primary-blue);
+            color: white;
+            transform-origin: bottom right; /* User messages pop from bottom-right */
+        }
+    </style>
+
+</head>
+<body>
+    <div class="app-wrapper">
+        <header class="app-header">
+            <div style="font-weight: bold; color: var(--primary-blue);">Chat with LLM</div>
+        </header>
+
+        <main style="flex: 1; display: flex; overflow: hidden;">
+            <div class="chat-container">
+                <div class="messages-area">
+                    <div class="message agent">Hello! How can I assist you today?</div>
+                    
+                </div>
+
+                <div class="input-area">
+                    <form class="input-box">
+                        <input type="text" placeholder="Describe your issue...">
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                const chatForm = document.querySelector('.input-box');
+                const messageInput = chatForm.querySelector('input');
+                const chatWindow = document.querySelector('.messages-area');
+
+                chatForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const message = messageInput.value.trim();
+                    if (!message) return;
+
+                    // 1. Append User Message
+                    appendMessage('user', message);
+                    messageInput.value = '';
+
+                    // 2. Show Typing Indicator
+                    const typingId = showTypingIndicator();
+
+                    // 3. Send to Django
+                    const formData = new FormData();
+                    formData.append('message', message);
+                    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+                    fetch('', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById(typingId).remove(); // Remove typing indicator
+                        appendMessage('agent', data.response);
+                    });
+                });
+                
+                function appendMessage(sender, text) {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = `message ${sender}`;
+                    msgDiv.innerText = text;
+                    chatWindow.appendChild(msgDiv);
+                    chatWindow.scrollTo({
+                        top: chatWindow.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                }
+
+                function showTypingIndicator() {
+                    const id = 'typing-' + Date.now();
+                    const typingDiv = document.createElement('div');
+                    typingDiv.className = 'message agent';
+                    typingDiv.id = id;
+                    typingDiv.innerHTML = '<i>...</i>';
+                    chatWindow.appendChild(typingDiv);
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                    return id;
+                }
+            </script>
+        </main>
+    </div>
+</body>
+</html>
