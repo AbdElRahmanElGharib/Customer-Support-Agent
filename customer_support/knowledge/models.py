@@ -29,3 +29,25 @@ class Embedding(models.Model):
 
     def __str__(self):
         return f"Embedding for {self.document_chunk}"
+
+from django.db import models
+
+
+class PDFSubmission(models.Model):
+    class Status(models.TextChoices):
+        SUBMITTED = "SUBMITTED", "Submitted"
+        IN_PROGRESS = "IN_PROGRESS", "In Progress"
+        SUCCEEDED = "SUCCEEDED", "Succeeded"
+        FAILED = "FAILED", "Failed"
+
+    file = models.FileField(upload_to="pdfs/")
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.SUBMITTED,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"PDFSubmission(id={self.pk}, status={self.status})"
