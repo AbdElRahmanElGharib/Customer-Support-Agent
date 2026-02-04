@@ -2,6 +2,7 @@ python-dotenv
 django
 djangorestframework
 mysqlclient
+email-validator
 numpy
 faiss
 torch
@@ -9,3 +10,4 @@ transformers
 sentence-transformers
 celery
 redis
+version
