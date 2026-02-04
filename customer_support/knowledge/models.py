@@ -48,6 +48,7 @@ class DocumentSubmission(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
+    user_email = models.EmailField(null=True)
 
     def __str__(self):
         return f"PDFSubmission(id={self.pk}, status={self.status})"

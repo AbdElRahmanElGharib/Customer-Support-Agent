@@ -39,11 +39,12 @@ class DocumentUploadView(FormView):
 
     def form_valid(self, form):
         uploaded_file = form.cleaned_data['file']
+        email = form.cleaned_data['email']
         
         fs = FileSystemStorage()
         filename = fs.save(uploaded_file.name, uploaded_file)
         
-        submission = DocumentSubmission.objects.create(file=filename, status=DocumentSubmission.Status.SUBMITTED)
+        submission = DocumentSubmission.objects.create(file=filename, status=DocumentSubmission.Status.SUBMITTED, user_email=email)
         process_document.delay(submission.pk)   # type: ignore
 
         return super().form_valid(form)

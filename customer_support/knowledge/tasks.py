@@ -1,6 +1,8 @@
 from celery import shared_task
 from .models import DocumentSubmission
 from knowledge.management.commands.ingest_documents import Command as IngestCommand
+from django.core.mail import send_mail
+from django.conf import settings
 
 @shared_task(bind=True, name="process_document")
 def process_document(self, submission_id: int):
@@ -20,7 +22,26 @@ def process_document(self, submission_id: int):
         submission.status = DocumentSubmission.Status.SUCCEEDED
         submission.save(update_fields=["status"])
 
+        if submission.user_email:
+            send_mail(
+                subject="PDF processing completed",
+                message="Your PDF has been processed successfully.",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[submission.user_email],
+                fail_silently=False,
+            )
+
     except Exception:
         submission.status = DocumentSubmission.Status.FAILED
         submission.save(update_fields=["status"])
+
+        if submission.user_email:
+            send_mail(
+                subject="PDF processing failed",
+                message="There was an error processing your PDF.",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[submission.user_email],
+                fail_silently=False,
+            )
+            
         raise
