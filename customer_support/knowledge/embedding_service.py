@@ -1,10 +1,11 @@
-from sentence_transformers import SentenceTransformer
 import numpy as np
+import requests
+from django.conf import settings
+
+class EmbeddingServiceError(Exception):
+    pass
 
 class LocalEmbedder:
-    def __init__(self, model_name='all-MiniLM-L6-v2'):
-        self.model = SentenceTransformer(model_name)
-
     def embed_texts(self, texts):
         """
         Args:
@@ -14,4 +15,19 @@ class LocalEmbedder:
         """
         if not texts:
             return np.array([])
-        return self.model.encode(texts, convert_to_numpy=True)
+        
+        url = f'{settings.LLM_SERVICE_BASE_URL}/embed/'
+        payload = {'text': texts}
+
+        try:
+            response = requests.post(url, json=payload, timeout=30)
+        except requests.RequestException as exc:
+            raise EmbeddingServiceError('Failed to reach embedding service') from exc
+
+        if response.status_code != 200:
+            raise EmbeddingServiceError(
+                f'Embedding service error: {response.status_code} - {response.text}'
+            )
+
+        data = response.json()
+        return np.array(data['embedding'])
