@@ -68,6 +68,8 @@
             {% csrf_token %}
             {{ form.file.label_tag }}
             {{ form.file }}
+            {{ form.email.label_tag }}
+            {{ form.email }}
             <div id="fileError" style="color: red; font-size: 0.8rem; margin-top: 5px;"></div>
             
             <button type="submit" class="btn-submit" style="margin-top: 20px;">
